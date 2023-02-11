@@ -1,0 +1,229 @@
+import random
+import time
+
+cards = ['Ace of spades','Two of spades', 'Three of spades', 'Four of spades', 'Five of spades', 'Six of spades', 'Seven of spades', 'Eight of spades', 'Nine of spades', 'Ten of spades', 'Jack of spades','Queen of spades','King of spades','Ace of hearts','Two of hearts', 'Three of hearts', 'Four of hearts', 'Five of hearts', 'Six of hearts', 'Seven of hearts', 'Eight of hearts', 'Nine of hearts', 'Ten of hearts', 'Jack of hearts','Queen of hearts','King of hearts','Ace of clubs','Two of clubs', 'Three of clubs', 'Four of clubs', 'Five of clubs', 'Six of clubs', 'Seven of clubs', 'Eight of clubs', 'Nine of clubs', 'Ten of clubs', 'Jack of clubs','Queen of clubs','King of clubs','Ace of diamonds','Two of diamonds', 'Three of diamonds', 'Four of diamonds', 'Five of diamonds', 'Six of diamonds', 'Seven of diamonds', 'Eight of diamonds', 'Nine of diamonds', 'Ten of diamonds', 'Jack of diamonds','Queen of diamonds','King of diamonds']
+
+
+def shuffle():
+    num_player_cards = 26
+    player_cards = []
+    computer_cards = []
+    num_computer_cards = 26
+    player_reserve = []
+    num_player_reserve = len(player_reserve)
+    computer_reserve = []
+    num_computer_reserve = len(computer_reserve)
+    for i in range(1, 26):
+        choice = random.choice(cards)
+        computer_cards.append(choice)
+        cards.remove(choice)
+        choice = random.choice(cards)
+        player_cards.append(choice)
+        cards.remove(choice)
+    player_throw = player_cards[0]
+    second_throw = player_cards[1]
+    third_throw = player_cards[2]
+    computer_throw = computer_cards[0]
+    second_throw_computer = computer_cards[1]
+    third_throw_computer = computer_cards[2]
+    while True:
+        if (num_player_cards == 0) and (num_player_reserve == 0):
+            break
+        if (num_computer_cards == 0) and (num_computer_reserve == 0):
+            break
+        if num_player_cards == 0:
+            player_cards = player_reserve
+            player_reserve = []
+        if num_computer_reserve == 0:
+            computer_cards = computer_reserve
+            computer_reserve = []
+        print(f'You pulled out a {player_throw}')
+        time.sleep(2)
+        print(f'Computer pulled out a {computer_throw}')
+        time.sleep(2)
+        if 'Ace' in player_throw:
+            player_card = 14
+        if 'King' in player_throw:
+            player_card = 13
+        if 'Queen' in player_throw:
+            player_card = 12
+        if 'Jack' in player_throw:
+            player_card = 11
+        if 'Ten' in player_throw:
+            player_card = 10
+        if 'Nine' in player_throw:
+            player_card = 9
+        if 'Eight' in player_throw:
+            player_card = 8
+        if 'Seven' in player_throw:
+            player_card = 7
+        if 'Six' in player_throw:
+            player_card = 6
+        if 'Five' in player_throw:
+            player_card = 5
+        if 'Four' in player_throw:
+            player_card = 4
+        if 'Three' in player_throw:
+            player_card = 3
+        if 'Two' in player_throw:
+            player_card = 2
+        if 'Ace' in computer_throw:
+            computer_card = 14
+        if 'King' in computer_throw:
+            computer_card  = 13
+        if 'Queen' in computer_throw:
+            computer_card  = 12
+        if 'Jack' in computer_throw:
+            computer_card  = 11
+        if 'Ten' in computer_throw:
+            computer_card  = 10
+        if 'Nine' in computer_throw:
+            computer_card  = 9
+        if 'Eight' in computer_throw:
+            computer_card  = 8
+        if 'Seven' in computer_throw:
+            computer_card  = 7
+        if 'Six' in computer_throw:
+            computer_card = 6
+        if 'Five' in computer_throw:
+            computer_card = 5
+        if 'Four' in computer_throw:
+            computer_card  = 4
+        if 'Three' in computer_throw:
+            computer_card  = 3
+        if 'Two' in computer_throw:
+            computer_card  = 2
+        if computer_card > player_card:
+            print('Computer won! Your Card goes to his reserve')
+            computer_reserve.append(computer_throw)
+            computer_reserve.append(player_throw)
+            computer_cards.remove(computer_cards[0])
+            player_cards.remove(player_cards[0])
+            num_computer_reserve += 1
+            num_player_cards -= 1
+            print('')
+            print(f'Computer has {num_computer_reserve} cards in his reserve!')
+        if computer_card < player_card:
+            print('You won! His Card goes to your reserve')
+            player_reserve.append(computer_throw)
+            player_reserve.append(player_throw)
+            try:
+                computer_cards.remove(computer_cards[0])
+                player_cards.remove(player_cards[0])
+            except:
+                print('')
+            num_player_reserve += 1
+            num_computer_cards -= 1
+            print('')
+            print(f'You have {num_player_reserve} cards in your reserve!')
+        if computer_card == player_card:
+            player_value = 0
+            computer_value = 0
+            print('Tie! WAR!')
+            print(f'Your first card is {player_throw} \n Computers first card is {computer_throw}')
+            print(f'Your second card is {second_throw} \n Computers second card is {second_throw_computer}')
+            print(f'Your second card is {third_throw} \n Computers second card is {third_throw_computer}')
+            if 'Ace' in third_throw:
+                player_value = 14
+            if 'King' in third_throw:
+                player_value = 13
+            if 'Queen' in third_throw:
+                player_value = 12
+            if 'Jack' in third_throw:
+                player_value = 11
+            if 'Ten' in third_throw:
+                player_value = 10
+            if 'Nine' in third_throw:
+                player_value = 9
+            if 'Eight' in third_throw:
+                player_value = 8
+            if 'Seven' in third_throw:
+                player_value = 7
+            if 'Six' in third_throw:
+                player_value = 6
+            if 'Five' in third_throw:
+                player_value = 5
+            if 'Four' in third_throw:
+                player_value = 4
+            if 'Three' in third_throw:
+                player_value = 3
+            if 'Two' in third_throw:
+                player_value = 2
+            if 'Ace' in third_throw_computer:
+                computer_value = 14
+            if 'King' in third_throw_computer:
+                computer_value = 13
+            if 'Queen' in third_throw_computer:
+                computer_value = 12
+            if 'Jack' in third_throw_computer:
+                computer_value = 11
+            if 'Ten' in third_throw_computer:
+                computer_value = 10
+            if 'Nine' in third_throw_computer:
+                computer_value = 9
+            if 'Eight' in third_throw_computer:
+                computer_value = 8
+            if 'Seven' in third_throw_computer:
+                computer_value = 7
+            if 'Six' in third_throw_computer:
+                computer_value = 6
+            if 'Five' in third_throw_computer:
+                computer_value = 5
+            if 'Four' in third_throw_computer:
+                computer_value = 4
+            if 'Three' in third_throw_computer:
+                computer_value = 3
+            if 'Two' in third_throw_computer:
+                computer_value = 2
+            if player_value > computer_value:
+                print('You won! His Cards go to your reserve')
+                computer_cards.remove(computer_throw)
+                player_cards.remove(player_throw)
+                player_reserve.append(computer_throw)
+                player_reserve.append(player_throw)
+                num_player_reserve += 1
+                num_computer_cards -= 1
+                computer_cards.remove(computer_throw)
+                player_cards.remove(player_throw)
+                player_reserve.append(computer_throw)
+                player_reserve.append(player_throw)
+                num_player_reserve += 1
+                num_computer_cards -= 1
+                computer_cards.remove(computer_throw)
+                player_cards.remove(player_throw)
+                player_reserve.append(computer_throw)
+                player_reserve.append(player_throw)
+                num_player_reserve += 1
+                num_computer_cards -= 1
+                print('')
+            else:
+                print('Computer won! Your Cards go to his reserve')
+                computer_cards.remove(computer_throw)
+                player_cards.remove(player_throw)
+                computer_reserve.append(computer_throw)
+                computer_reserve.append(player_throw)
+                num_computer_reserve += 1
+                num_player_cards -= 1
+                computer_cards.remove(computer_throw)
+                player_cards.remove(player_throw)
+                computer_reserve.append(computer_throw)
+                computer_reserve.append(player_throw)
+                num_computer_reserve += 1
+                num_player_cards -= 1
+                computer_cards.remove(computer_throw)
+                player_cards.remove(player_throw)
+                computer_reserve.append(computer_throw)
+                computer_reserve.append(player_throw)
+                num_computer_reserve += 1
+                num_player_cards -= 1
+                print('')
+        print('')
+    if (num_player_cards == 0) and (num_player_reserve == 0):
+        print('Computer has Won the game!')
+    else:
+        print('Congrats! You have won the game')
+
+
+
+
+shuffle()
